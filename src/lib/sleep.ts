@@ -1,8 +1,8 @@
 const defaultDuration = 500;
 
-export const simulateNetwork = async (fn: () => void) => {
+export const simulateNetwork = async <T>(value: T): Promise<T> => {
   await sleep(1000);
-  fn();
+  return value;
 };
 
 export const sleep = (duration = defaultDuration): Promise<undefined> => {
