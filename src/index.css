@@ -10,11 +10,11 @@ body {
 
 html,
 body {
-  @apply m-0 h-screen w-screen p-0;
+  @apply m-0 h-full w-full p-0;
 }
 
 #root {
-  @apply h-screen w-screen;
+  @apply h-full w-full overflow-hidden;
 }
 
 h1,
@@ -57,8 +57,13 @@ dl {
   @apply leading-relaxed;
 }
 
-input {
+input,
+textarea {
   @apply border-2 border-primary-700 bg-primary-100 p-2 placeholder-primary-400 accent-primary-600 shadow-sm transition-all ease-in invalid:border-red-800 invalid:bg-red-200 out-of-range:border-red-800 out-of-range:bg-red-200 hover:bg-primary-200 hover:accent-primary-700 focus:bg-primary-50 focus:outline-none disabled:border-slate-500 disabled:bg-slate-100 disabled:placeholder-slate-400;
+}
+
+textarea {
+  @apply h-40;
 }
 
 button,
