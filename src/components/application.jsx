@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import NoteView from './note-view';
+import { lazy, Suspense, useState } from 'react';
 import NotesList from './notes-list';
 
 import data from '../api/notes.json';
+import { simulateNetwork } from '../lib/sleep';
+import Loading from './loading';
+
+const NoteView = lazy(() => simulateNetwork(import('./note-view')));
 
 const Application = () => {
   const [notes, setNotes] = useState(data);
@@ -17,12 +20,14 @@ const Application = () => {
             currentNote={currentNote}
             setCurrentNote={setCurrentNote}
           />
-          <NoteView
-            notes={notes}
-            setNotes={setNotes}
-            currentNote={currentNote}
-            setCurrentNote={setCurrentNote}
-          />
+          <Suspense fallback={<Loading />}>
+            <NoteView
+              notes={notes}
+              setNotes={setNotes}
+              currentNote={currentNote}
+              setCurrentNote={setCurrentNote}
+            />
+          </Suspense>
         </div>
       </div>
     </main>
