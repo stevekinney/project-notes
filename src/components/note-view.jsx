@@ -3,7 +3,7 @@ import EmptyView from './empty';
 import Note from './note';
 
 const NoteView = ({ notes, setNotes, currentNote, setCurrentNote }) => {
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
 
   if (!currentNote) return <EmptyView />;
 
