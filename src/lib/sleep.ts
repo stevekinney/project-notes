@@ -1,5 +1,10 @@
 const defaultDuration = 500;
 
+export const simulateNetwork = async (fn: () => void) => {
+  await sleep(1000);
+  fn();
+};
+
 export const sleep = (duration = defaultDuration): Promise<undefined> => {
   return new Promise((resolve) => {
     setTimeout(() => {

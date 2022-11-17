@@ -1,23 +1,13 @@
-import { useState } from 'react';
-import EmptyView from './empty';
-import NoteContent from './note-content';
+import Editing from './edit';
 
-const Note = ({ notes, currentNote, setNotes }) => {
-  const [isEditing, setIsEditing] = useState(true);
-  if (!currentNote) return <EmptyView />;
-
-  const note = notes.find(({ id }) => id === currentNote);
-
+const NoteContent = ({ note, setNotes, isEditing }) => {
+  if (isEditing) return <Editing note={note} setNotes={setNotes} />;
   return (
-    <section className="flex flex-col w-full h-full bg-white rounded-r-2xl">
-      <header className="flex p-2 border-b shadow-lg border-tr-2 place-content-end rounded-tr-2xl border-primary-400 bg-primary-400">
-        <button onClick={() => setIsEditing((x) => !x)}>
-          {isEditing ? 'Save' : 'Edit'}
-        </button>
-      </header>
-      <NoteContent note={note} setNotes={setNotes} isEditing={isEditing} />
-    </section>
+    <div className="flex flex-col h-full gap-4 p-4 overflow-y-scroll">
+      <h2>{note.title}</h2>
+      <p>{note.content}</p>
+    </div>
   );
 };
 
-export default Note;
+export default NoteContent;
